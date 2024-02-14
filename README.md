@@ -11,3 +11,6 @@
 
 ### Axios:
 - `npm i axios`;
+
+### Dependências:
+- `npm i` -- depois de clonar ou download
