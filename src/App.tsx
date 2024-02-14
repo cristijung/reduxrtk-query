@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CatList from './app/components/CatList';
 import DogList from './app/components/DogList';
+import PokemonList from './app/components/PokemonList';
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
     <CatList/>
     <hr/>
     <DogList/>
+    <hr/>
+    <PokemonList/>
     
     </>
   );

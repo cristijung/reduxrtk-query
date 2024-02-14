@@ -1,3 +1,4 @@
+//usando query com configuração de re-fetching
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Cat } from '../types/types';
 import { useEffect } from 'react';

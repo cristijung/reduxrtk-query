@@ -1,3 +1,4 @@
+//usando query com configuração padrão
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Dog } from '../types/types';
 

@@ -17,3 +17,12 @@ export interface Dog {
         url: string;
     };
 }
+
+export interface Pokemon {
+    name: string;
+    url: string;
+  }
+  
+  export interface PokemonsResponse {
+    results: Pokemon[];
+  }
