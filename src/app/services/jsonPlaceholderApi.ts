@@ -1,3 +1,4 @@
+//busca com assíncronos normais do query
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Post } from '../types/types'
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useGetPokemonsQuery } from '../services/pokeApi';
 
 const PokemonList = () => {
