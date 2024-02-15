@@ -1,16 +1,26 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-//import { RootState } from '../../store/store';
+//import { RootState } from '../../store/store'; --- outra gambiarra
 
 interface ReqResState {
   loading: boolean;
   error: string | null;
 }
 
-const initialState: ReqResState = {
+// interface ReqResState {
+//     loading: boolean;
+//     error: string | null;
+//     userData: { name: string; job: string } | null; // Adicione este campo para armazenar os dados do usuário e do trabalho   //PAREI AQUIIII
+//   };
+
+const initialState: ReqResState = {  
   loading: false,
   error: null,
-};
+}
+
+
+
+
 
 export const postUser = createAsyncThunk(
   'reqres/postUser',
@@ -21,7 +31,7 @@ export const postUser = createAsyncThunk(
       console.log('User created:', response.data);
       thunkAPI.dispatch(setLoading(false));
       return response.data; // se precisar, retornar dados relevantes da requisição
-    } catch (error: any) { // especificando que 'error' é do tipo 'any - gambi'
+    } catch (error: any) { // especificando que 'error' é do tipo 'any - gambi \o/'
       thunkAPI.dispatch(setError(error.message));
       thunkAPI.dispatch(setLoading(false));
       throw error; // rejeitar todas as promise para que o RTK possa lidar com o erro adequadamente
