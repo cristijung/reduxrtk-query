@@ -26,3 +26,10 @@ export interface Pokemon {
   export interface PokemonsResponse {
     results: Pokemon[];
   }
+
+  export interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  }
