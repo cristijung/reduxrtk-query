@@ -5,12 +5,14 @@ import { pokeApi } from "../services/pokeApi";
 import { jsonPlaceholderApi } from '../services/jsonPlaceholderApi';
 import counterReducer from "../services/slice/counterSlice";
 import reqresReducer from '../services/slice/reqresSlice';
+import todoReducer from "../services/slice/todoSlice";
 
 
 export const store = configureStore({
     reducer: {
       reqres: reqresReducer,
       counter: counterReducer,
+      todos: todoReducer,
       [catApi.reducerPath]: catApi.reducer,
       [dogsApi.reducerPath]: dogsApi.reducer,
       [pokeApi.reducerPath]: pokeApi.reducer, 
