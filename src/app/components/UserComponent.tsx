@@ -4,7 +4,7 @@ import { RootState } from '../store/store';
 import { postUser } from '../services/slice/reqresSlice';
 
 const UserComponente = () => {
-  const dispatch = useDispatch<any>(); // gambi
+  const dispatch = useDispatch<any>(); // gambiarra
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
 

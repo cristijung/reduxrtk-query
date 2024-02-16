@@ -3,12 +3,14 @@ import { catApi } from "../services/catsApi";
 import { dogsApi } from "../services/dogsApi";
 import { pokeApi } from "../services/pokeApi";
 import { jsonPlaceholderApi } from '../services/jsonPlaceholderApi';
+import counterReducer from "../services/slice/counterSlice";
 import reqresReducer from '../services/slice/reqresSlice';
 
 
 export const store = configureStore({
     reducer: {
       reqres: reqresReducer,
+      counter: counterReducer,
       [catApi.reducerPath]: catApi.reducer,
       [dogsApi.reducerPath]: dogsApi.reducer,
       [pokeApi.reducerPath]: pokeApi.reducer, 

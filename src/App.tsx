@@ -5,6 +5,7 @@ import DogList from './app/components/DogList';
 import PokemonList from './app/components/PokemonList';
 import PostsList from './app/components/PostList';
 import UserComponent from './app/components/UserComponent';
+import Counter from './app/components/Counter';
 
 
 
@@ -15,12 +16,13 @@ function App() {
     <hr/>
     <DogList/>
     <hr/>
+    <Counter/>
+    <hr/>
     <PokemonList/>
     <hr/>
     <PostsList/>
     <hr/>
-    <UserComponent/>
-
+    <UserComponent/>    
     <br/>
     
     </>
