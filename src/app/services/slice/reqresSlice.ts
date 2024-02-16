@@ -1,70 +1,64 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-//import { RootState } from '../../store/store'; --- outra gambiarra
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { UserPayload, UserData, ReqResState } from "../../types/types";
 
-interface ReqResState {
-  loading: boolean;
-  error: string | null;
-}
-
-// interface ReqResState {
-//     loading: boolean;
-//     error: string | null;
-//     userData: { name: string; job: string } | null; // Adicione este campo para armazenar os dados do usuário e do trabalho   //PAREI AQUIIII
-//   };
-
-const initialState: ReqResState = {  
+const initialState: ReqResState = {
   loading: false,
   error: null,
-}
-
-
-
-
+  userData: null,
+};
 
 export const postUser = createAsyncThunk(
-  'reqres/postUser',
-  async (data: any, thunkAPI) => {
+  "reqres/postUser",
+  async (data: UserPayload, { dispatch }) => {
     try {
-      thunkAPI.dispatch(setLoading(true));
-      const response = await axios.post('https://reqres.in/api/users', data);
-      console.log('User created:', response.data);
-      thunkAPI.dispatch(setLoading(false));
-      return response.data; // se precisar, retornar dados relevantes da requisição
-    } catch (error: any) { // especificando que 'error' é do tipo 'any - gambi \o/'
-      thunkAPI.dispatch(setError(error.message));
-      thunkAPI.dispatch(setLoading(false));
-      throw error; // rejeitar todas as promise para que o RTK possa lidar com o erro adequadamente
+      dispatch(setLoading(true));
+      const response = await axios.post("https://reqres.in/api/users", data);
+      console.log("User created:", response.data);
+      return response.data; // retorna os dados para serem manipulados pelo reducer
+    } catch (error: any) {
+      dispatch(setError(error.toString()));
+      throw error; // erro para que possa ser tratado pelo reducer
+    } finally {
+      dispatch(setLoading(false));
     }
   }
 );
 
 const reqresSlice = createSlice({
-  name: 'reqres',
+  name: "reqres",
   initialState,
   reducers: {
-    setLoading(state, action: PayloadAction<boolean>) {
+    setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-    setError(state, action: PayloadAction<string | null>) {
+    setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
+    },
+    setUserData: (state, action: PayloadAction<UserData>) => {
+      state.userData = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(postUser.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(postUser.fulfilled, (state) => {
-      state.loading = false;
-    });
-    builder.addCase(postUser.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message ?? 'Um erro ocorreu';
-    });
+    builder
+      .addCase(postUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.userData = null; // limpa os dados anteriores ao iniciar uma nova solicitação
+      })
+      .addCase(postUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userData = action.payload; // armazena os dados do usuário após a criação bem-sucedida
+        state.error = null;
+      })
+      .addCase(postUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "An unexpected error occurred";
+        state.userData = null; // optar por limpar ou manter os dados antigos dependendo do caso de uso
+      });
   },
 });
 
-export const { setLoading, setError } = reqresSlice.actions;
+export const { setLoading, setError, setUserData } = reqresSlice.actions;
 
 export default reqresSlice.reducer;

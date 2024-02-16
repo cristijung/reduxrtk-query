@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { postUser } from '../services/slice/reqresSlice';
 
 const UserComponente = () => {
-  const dispatch = useDispatch<any>(); // gambiarra gigante
+  const dispatch = useDispatch<any>(); // gambi
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
 
@@ -19,11 +19,11 @@ const UserComponente = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input type="text" placeholder="Job" value={job} onChange={(e) => setJob(e.target.value)} />
+        <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+        <input type="text" placeholder="Cargo" value={job} onChange={(e) => setJob(e.target.value)} />
         <button type="submit" disabled={loading}>Submit</button>
       </form>
-      {loading && <p>Loading...</p>}
+      {loading && <p>Carregando...</p>}
       {error && <p>Error: {error}</p>}
     </div>
   );

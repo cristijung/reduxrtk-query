@@ -33,3 +33,21 @@ export interface Pokemon {
     title: string;
     body: string;
   }
+
+  export interface UserPayload {
+    name: string;
+    job: string;
+  }
+  
+  export interface UserData {
+    name: string;
+    job: string;
+    id?: string;
+    createdAt?: string;
+  }
+  
+  export interface ReqResState {
+    loading: boolean;
+    error: string | null;
+    userData: UserData | null;
+  }
